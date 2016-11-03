@@ -1,3 +1,6 @@
+:root {
+    font-size: 100vh;
+}
 html,
 body {
     margin: 0;
@@ -16,6 +19,9 @@ body {
 }
 
 @media (orientation: portrait) {
+    :root {
+        font-size: 100vw;
+    }
     .canvas {
         width: 100vw;
         height: 100vw;
@@ -23,19 +29,80 @@ body {
 }
 
 .p-1var {
-    background: transparent url(svg/p-1var.svg) 50% no-repeat;
-    background-size: 100% 100%;
+    background-color: #888;
     width: 100%;
     height: 100%;
     border-radius: 100%;
 }
 
-.p-1-1 {
-    background-color: red;
-    width: 15.9453125%;
-    height: 7.98828125%;
+.wheel {
+    color: #ccc;
+    background-color: #333;
+    width: 26.8125%;
+    height: 26.8125%;
+    border-radius: 100%;
     position: absolute;
-    z-index: 99;
     top: 0;
     left: 0;
+    animation-name: revolution;
+    animation-duration: 10s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    animation-direction: alternate;
+}
+.wheel::before {
+    content: '';
+    position: absolute;
+    background-color: currentColor;
+    width: 6px;
+    height: 6px;
+    border-radius: 100%;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+}
+.wheel::after {
+    content: '';
+    position: absolute;
+    width: 2px;
+    height: 50%;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: currentColor;
+}
+
+.p-9 {
+    background: transparent url(svg/p-9.svg) 50% no-repeat;
+    background-size: 100% 100%;
+    width: 18.69921875%;
+    height: 18.69921875%;
+    top: 8%;
+    left: 8%;
+    animation-duration: 0.6s;
+    animation-timing-function: ease-in-out;
+}
+
+.p-9::before,
+.p-9::after {
+    display: none;
+}
+
+
+
+.p-10 {
+    width: 25.9140625%;
+    height: 25.9140625%;
+    top: 10%;
+    left: 30%;
+    animation-duration: 60s;
+}
+
+@keyframes revolution {
+    from {
+        transform: rotate(-90deg);
+    }
+    to {
+        transform: rotate(90deg);
+    }
 }
