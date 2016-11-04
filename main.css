@@ -12,24 +12,23 @@ body {
 }
 
 .canvas {
-    background-color: #ccc;
-    width: 100vh;
-    height: 100vh;
+    width: 1040px;
+    height: 1040px;
     position: relative;
 }
 
 @media (orientation: portrait) {
-    :root {
+/*    :root {
         font-size: 100vw;
     }
     .canvas {
         width: 100vw;
         height: 100vw;
-    }
+    }*/
 }
 
 .p-1var {
-    background-color: #888;
+    background-color: #efefef;
     width: 100%;
     height: 100%;
     border-radius: 100%;
@@ -45,10 +44,9 @@ body {
     top: 0;
     left: 0;
     animation-name: revolution;
-    animation-duration: 10s;
+    animation-duration: 60s;
     animation-iteration-count: infinite;
-    animation-timing-function: linear;
-    animation-direction: alternate;
+    animation-direction: normal;
 }
 .wheel::before {
     content: '';
@@ -75,12 +73,14 @@ body {
 .p-9 {
     background: transparent url(svg/p-9.svg) 50% no-repeat;
     background-size: 100% 100%;
-    width: 18.69921875%;
-    height: 18.69921875%;
-    top: 8%;
-    left: 8%;
-    animation-duration: 0.6s;
-    animation-timing-function: ease-in-out;
+    width: 200px;
+    height: 200px;
+    top: 80px;
+    left: 80px;
+    animation-name: revolution;
+    animation-direction: normal;
+    animation-duration: 2.5s;
+    animation-timing-function: steps(40, end);
 }
 
 .p-9::before,
@@ -88,21 +88,82 @@ body {
     display: none;
 }
 
+.escapement {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    top: 80px;
+    left: 80px;
+}
+
+.escapement::before,
+.escapement::after {
+    background-color: #000;
+    content: '';
+    width: 10px;
+    height: 10px;
+    position: absolute;
+    border-radius: 50%;
+    animation-name: escapement;
+    animation-direction: normal;
+    animation-timing-function: step-end;
+    animation-duration: 0.125s;
+    animation-iteration-count: infinite;
+}
+
+.escapement::before {
+    left: 69px;
+    top: 7px;
+
+}
+
+.escapement::after {
+    left: 139px;
+    top: 15px;
+    animation-direction: reverse;
+}
+
 
 
 .p-10 {
-    width: 25.9140625%;
-    height: 25.9140625%;
-    top: 10%;
-    left: 30%;
+    color: gray;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
     animation-duration: 60s;
+    animation-timing-function: steps(60, end);
+    background-color: transparent;
+}
+
+.p-11 {
+    color: orange;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    animation-duration: 60s;
+    animation-timing-function: steps(480, end);
+    background-color: transparent;
 }
 
 @keyframes revolution {
     from {
-        transform: rotate(-90deg);
+        transform: rotate(0deg);
     }
     to {
-        transform: rotate(90deg);
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes escapement {
+    from {
+        visibility: visible;
+    }
+    50% {
+        visibility: hidden;
+    }
+    to {
+        visibility: visible;
     }
 }
